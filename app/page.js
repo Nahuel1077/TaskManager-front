@@ -98,11 +98,12 @@ export default function Home() {
       {tasks.length === 0 ? (
         <p>No hay tareas disponibles.</p>
       ) : (
-        <ul className='flex flex-row gap-8'>
+        <ul className='grid sm:grid-cols-3 grid-cols-1 gap-10'>
           {tasks.map((task) => (
             <li key={task._id} className='flex flex-col justify-between border-2 border-amber-100 rounded-md p-2 bg-[linear-gradient(180deg,black,#3f3f3f)]'>
               <h3>{task.title}</h3>
               <p>{task.description}</p>
+              <p>Duración: {task.duration} h</p>
               <p>Estado: {task.completed ? 'Completada' : 'Pendiente'}</p>
               <div className='flex flex-row justify-between'>
                 <button onClick={()=> handleEdit(task)}>
@@ -114,7 +115,7 @@ export default function Home() {
                   className='invert'
                   />
                 </button>
-                <button onClick={handleDelete}>
+                <button onClick={()=> handleDelete(task._id)}>
                   <Image
                   src="/trash.svg"
                   alt="edit"
